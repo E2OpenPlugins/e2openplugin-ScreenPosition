@@ -6,10 +6,10 @@ from Components.ConfigList import ConfigListScreen
 from Components.Button import Button
 
 config.plugins.ScreenPosition = ConfigSubsection()
-config.plugins.ScreenPosition.h_start = ConfigInteger(default = 0x21a)
-config.plugins.ScreenPosition.h_end = ConfigInteger(default = 0xd2b)
-config.plugins.ScreenPosition.v_start = ConfigInteger(default = 0x27)
-config.plugins.ScreenPosition.v_end = ConfigInteger(default = 0x267)
+config.plugins.ScreenPosition.h_start = ConfigInteger(default=0x21a)
+config.plugins.ScreenPosition.h_end = ConfigInteger(default=0xd2b)
+config.plugins.ScreenPosition.v_start = ConfigInteger(default=0x27)
+config.plugins.ScreenPosition.v_end = ConfigInteger(default=0x267)
 
 class ScreenPosition(Screen, ConfigListScreen):
 	skin = """
@@ -43,7 +43,7 @@ class ScreenPosition(Screen, ConfigListScreen):
 		}, -2)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session=self.session)
 
 		h_start = self.h_start_offset
 		h_end = self.h_end_offset
@@ -70,10 +70,10 @@ class ScreenPosition(Screen, ConfigListScreen):
 		except:
 			pass
 
-		self.h_start = ConfigSlider(default = h_start - self.h_start_offset, increment = 32, limits = (0, 0x200))
-		self.h_end = ConfigSlider(default = h_end - self.h_end_offset, increment = 32, limits = (0, 0x200))
-		self.v_start = ConfigSlider(default = v_start - self.v_start_offset, increment = 4, limits = (0, 0x50))
-		self.v_end = ConfigSlider(default = v_end - self.v_end_offset, increment = 4, limits = (0, 0x50))
+		self.h_start = ConfigSlider(default=h_start - self.h_start_offset, increment=32, limits=(0, 0x200))
+		self.h_end = ConfigSlider(default=h_end - self.h_end_offset, increment=32, limits=(0, 0x200))
+		self.v_start = ConfigSlider(default=v_start - self.v_start_offset, increment=4, limits=(0, 0x50))
+		self.v_end = ConfigSlider(default=v_end - self.v_end_offset, increment=4, limits=(0, 0x50))
 		self.list.append(getConfigListEntry(_("left"), self.h_start))
 		self.list.append(getConfigListEntry(_("right"), self.h_end))
 		self.list.append(getConfigListEntry(_("top"), self.v_start))
@@ -148,5 +148,5 @@ def startup(reason, **kwargs):
 	setConfiguredPosition()
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "Screen position setup", description = "Lets you adjust the screen position", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
-					PluginDescriptor(name = "Screen position setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
+	return [PluginDescriptor(name="Screen position setup", description="Lets you adjust the screen position", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
+					PluginDescriptor(name="Screen position setup", description="", where=PluginDescriptor.WHERE_SESSIONSTART, fnc=startup)]

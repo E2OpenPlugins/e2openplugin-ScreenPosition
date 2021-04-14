@@ -11,6 +11,7 @@ config.plugins.ScreenPosition.h_end = ConfigInteger(default=0xd2b)
 config.plugins.ScreenPosition.v_start = ConfigInteger(default=0x27)
 config.plugins.ScreenPosition.v_end = ConfigInteger(default=0x267)
 
+
 class ScreenPosition(Screen, ConfigListScreen):
 	skin = """
 	<screen position="c-175,c-75" size="350,150" title="Screen position setup">
@@ -124,6 +125,7 @@ class ScreenPosition(Screen, ConfigListScreen):
 		self.session.nav.playService(oldService)
 		self.close()
 
+
 def setConfiguredPosition():
 	try:
 		file = open("/proc/stb/video/pal_h_start", "w")
@@ -141,11 +143,14 @@ def setConfiguredPosition():
 	except:
 		return
 
+
 def main(session, **kwargs):
 	session.open(ScreenPosition)
 
+
 def startup(reason, **kwargs):
 	setConfiguredPosition()
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name="Screen position setup", description="Lets you adjust the screen position", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
